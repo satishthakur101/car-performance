@@ -1,0 +1,191 @@
+/* ==========================================================================
+   1. Fonts & Tailwind Directives
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
+@import "tailwindcss";
+
+/* ==========================================================================
+   2. Design System Tokens & Themes (Dark & Light)
+   ========================================================================== */
+:root {
+  --bg-color: #050505;
+  --text-primary: #FFFFFF;
+  --text-muted: #8A8A8A;
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --card-bg: rgba(35, 33, 36, 0.56);
+  --border-color-10: rgba(255, 255, 255, 0.10);
+  --border-color-15: rgba(255, 255, 255, 0.15);
+  --text-secondary-50: rgba(255, 255, 255, 0.50);
+  --text-secondary-20: rgba(255, 255, 255, 0.20);
+  --bg-light: rgba(255, 255, 255, 0.05);
+  --btn-border-top: #FFFFFF;
+  --btn-border-bottom: rgba(102, 102, 102, 0);
+  --shadow-inset-1: rgba(246, 247, 255, 0.22);
+  --shadow-inset-2: rgba(246, 247, 255, 0.62);
+  --bg-shadow-opacity: 1;
+}
+
+html.light-theme,
+body.light-theme,
+.light-theme {
+  --bg-color: #F4F4F6 !important;
+  --text-primary: #111111 !important;
+  --text-muted: #555555 !important;
+  --border-subtle: rgba(0, 0, 0, 0.12) !important;
+  --card-bg: rgba(255, 255, 255, 0.90) !important;
+  --border-color-10: rgba(0, 0, 0, 0.10) !important;
+  --border-color-15: rgba(0, 0, 0, 0.15) !important;
+  --text-secondary-50: rgba(0, 0, 0, 0.55) !important;
+  --text-secondary-20: rgba(0, 0, 0, 0.20) !important;
+  --bg-light: rgba(0, 0, 0, 0.05) !important;
+  --btn-border-top: rgba(0, 0, 0, 0.15) !important;
+  --btn-border-bottom: rgba(0, 0, 0, 0.05) !important;
+  --shadow-inset-1: rgba(0, 0, 0, 0.03) !important;
+  --shadow-inset-2: rgba(0, 0, 0, 0.06) !important;
+  --bg-shadow-opacity: 0.12 !important;
+}
+
+html.light-theme,
+body.light-theme,
+.light-theme,
+.light-theme body,
+.light-theme #root {
+  background-color: #F4F4F6 !important;
+  color: #111111 !important;
+}
+
+/* Light Theme Element Text Color Overrides */
+html.light-theme .text-white,
+body.light-theme .text-white,
+.light-theme .text-white {
+  color: #111111 !important;
+}
+
+html.light-theme .tooltip-container,
+body.light-theme .tooltip-container,
+.light-theme .tooltip-container,
+html.light-theme .tooltip-container *,
+body.light-theme .tooltip-container *,
+.light-theme .tooltip-container * {
+  color: #FFFFFF !important;
+}
+
+html.light-theme .thank-you-home-btn,
+body.light-theme .thank-you-home-btn,
+.light-theme .thank-you-home-btn,
+html.light-theme .thank-you-home-btn *,
+body.light-theme .thank-you-home-btn *,
+.light-theme .thank-you-home-btn * {
+  color: #FFFFFF !important;
+}
+
+html.light-theme .text-gray-200,
+body.light-theme .text-gray-200,
+html.light-theme .text-gray-300,
+body.light-theme .text-gray-300,
+html.light-theme .text-gray-400,
+body.light-theme .text-gray-400 {
+  color: #444444 !important;
+}
+
+/* ==========================================================================
+   3. Global Body & Transition Reset
+   ========================================================================== */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* ==========================================================================
+   4. Component Specific Custom Utilities
+   ========================================================================== */
+.light-theme .left-arc-btn,
+.light-theme .right-arc-btn {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+  color: #111111 !important;
+}
+
+.light-theme .left-arc-btn.active-btn,
+.light-theme .right-arc-btn.active-btn,
+.light-theme .left-arc-btn:hover,
+.light-theme .right-arc-btn:hover {
+  background: #E10600 !important;
+  background-image: linear-gradient(180deg, #fb0a08 0%, #ff0900 100%) !important;
+  border: 1px solid #E10600 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 20px rgba(225, 6, 0, 0.4) !important;
+}
+
+.bg-telemetry-radial {
+  background: 
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.08) 0%, rgba(5, 5, 5, 0) 60%),
+    radial-gradient(circle at 50% 90%, rgba(225, 6, 0, 0.25) 0%, rgba(5, 5, 5, 0) 50%),
+    var(--bg-color);
+}
+
+.center-circle-frame {
+  width: 371.7px;
+  height: 507.38px;
+  border: 1.32px solid transparent;
+}
+
+.left-arc-btn,
+.right-arc-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  background: var(--card-bg);
+  border: 1px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  background-image: 
+    linear-gradient(var(--card-bg), var(--card-bg)), 
+    linear-gradient(180deg, var(--btn-border-top) 0%, var(--btn-border-bottom) 50%);
+  box-shadow: 
+    inset 0px 4px 8px 0px var(--shadow-inset-1),
+    inset 0px 4px 16px 0px var(--shadow-inset-2);
+  color: var(--text-primary);
+  transition: all 0.3s ease-in-out;
+}
+
+.left-arc-btn.active-btn,
+.right-arc-btn.active-btn,
+.left-arc-btn:hover,
+.right-arc-btn:hover {
+  background-image: 
+    linear-gradient(var(--card-bg), var(--card-bg)), 
+    linear-gradient(180deg, #fb0a08 10%, #ff0900 100%) !important;
+  color: #ffffff !important;
+  transform: scale(1.05);
+}
+
+.timeline-gradient {
+  background: var(--card-bg);
+  border: 1px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  background-image:
+    linear-gradient(var(--card-bg), var(--card-bg)),
+    linear-gradient(
+      180deg,
+      var(--btn-border-top) 0%,
+      var(--btn-border-bottom) 50%
+    );
+  box-shadow:
+    inset 0px 4px 8px var(--shadow-inset-1),
+    inset 0px 4px 16px var(--shadow-inset-2);
+}
+
+.stat-number {
+  font-family: "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 100%;
+  letter-spacing: 0em;
+}
