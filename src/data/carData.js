@@ -1,3 +1,30 @@
+export const processStepsData = [
+  {
+    id: 1,
+    title: "Registration",
+    description: "Fill form for submission",
+    left: "0%",
+  },
+  {
+    id: 2,
+    title: "Consultation",
+    description: "Planning and pricing",
+    left: "33%",
+  },
+  {
+    id: 3,
+    title: "Artist assign",
+    description: "according to task",
+    left: "66%",
+  },
+  {
+    id: 4,
+    title: "Vehicle Delivery",
+    description: "Final step of process",
+    left: "100%",
+  },
+];
+
 const carData = [
   {
     id: 1,
@@ -32,29 +59,3 @@ const carData = [
 
 export default carData;
 
-export const processStepsData = [
-  {
-    id: 1,
-    title: "Registration",
-    description: "Fill form for submission",
-    left: "0%",
-  },
-  {
-    id: 2,
-    title: "Consultation",
-    description: "Planning and pricing",
-    left: "33%",
-  },
-  {
-    id: 3,
-    title: "Artist assign",
-    description: "according to task",
-    left: "66%",
-  },
-  {
-    id: 4,
-    title: "Vehicle Delivery",
-    description: "Final step of process",
-    left: "100%",
-  },
-];

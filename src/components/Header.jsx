@@ -17,9 +17,6 @@ const HeaderActionButton = ({ onClick, title, children, active = false }) => (
   </button>
 );
 
-/**
- * Header Theme Toggle Control (Sun / Moon Switch)
- */
 const ThemeToggleSwitch = ({ theme, setTheme }) => {
   return (
     <div
@@ -29,7 +26,6 @@ const ThemeToggleSwitch = ({ theme, setTheme }) => {
         borderColor: "var(--border-color-15)",
       }}
     >
-      {/* Light Mode Switch */}
       <button
         type="button"
         onClick={() => setTheme("light")}
@@ -52,8 +48,6 @@ const ThemeToggleSwitch = ({ theme, setTheme }) => {
           />
         </svg>
       </button>
-
-      {/* Dark Mode Switch */}
       <button
         type="button"
         onClick={() => setTheme("dark")}
@@ -80,16 +74,11 @@ const ThemeToggleSwitch = ({ theme, setTheme }) => {
   );
 };
 
-/**
- * Header Component
- * Top branding bar, theme controls, back navigation, & showcase hero title.
- */
+
 const Header = ({ theme, setTheme, onBackClick }) => {
   return (
     <header className="w-full px-[27px] pt-3 z-10 relative select-none">
-      {/* Top Utility Bar */}
       <div className="w-full h-[78px] flex items-center justify-between">
-        {/* Brand Logo */}
         <div className="text-xl sm:text-2xl font-black italic tracking-wider flex items-center gap-1">
           <img
             src="./logo.png"
@@ -98,31 +87,25 @@ const Header = ({ theme, setTheme, onBackClick }) => {
           />
         </div>
 
-        {/* Theme Toggle Pill */}
         <div className="flex items-center gap-3">
           <ThemeToggleSwitch theme={theme} setTheme={setTheme} />
         </div>
       </div>
 
-      {/* Action Sub-Bar */}
       <div className="flex items-center justify-between sm:mt-4 mt-0">
-        {/* Back / Previous Lap Button */}
         <HeaderActionButton onClick={onBackClick} title="Previous Lap">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
           </svg>
         </HeaderActionButton>
 
-        {/* Quick Action Icons */}
         <div className="flex items-center gap-3">
-          {/* Download Action */}
           <HeaderActionButton title="Download Report">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
             </svg>
           </HeaderActionButton>
 
-          {/* Share Action */}
           <HeaderActionButton title="Share Showcase">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -134,7 +117,6 @@ const Header = ({ theme, setTheme, onBackClick }) => {
             </svg>
           </HeaderActionButton>
 
-          {/* Red Confirm Badge */}
           <button
             type="button"
             title="Confirmed"
