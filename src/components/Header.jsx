@@ -1,8 +1,5 @@
 import React from "react";
 
-/**
- * Reusable Circular Action Button with Glassmorphism
- */
 const HeaderActionButton = ({ onClick, title, children, active = false }) => (
   <button
     type="button"

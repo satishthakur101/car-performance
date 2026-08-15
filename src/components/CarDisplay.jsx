@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-/**
- * Helper function to translate progress step tooltip classes based on percentage offset
- */
 const getStepTranslateClass = (leftPercentageStr) => {
   if (leftPercentageStr === "0%") return "translate-x-0";
   if (leftPercentageStr === "100%") return "-translate-x-full";
   return "-translate-x-1/2";
 };
 
-/**
- * Subcomponent for Stage 1: Animated Process Stepper Line
- */
 const ProcessStepperLine = ({ steps, currentStepIndex, carImage }) => {
   const activeStep = steps[currentStepIndex];
 
@@ -23,7 +17,6 @@ const ProcessStepperLine = ({ steps, currentStepIndex, carImage }) => {
       exit={{ opacity: 0, scale: 0.95 }}
       className="relative z-10 w-full max-w-4xl md:min-h-[300px] flex flex-col items-center justify-center px-4 select-none"
     >
-      {/* Active Step Card Overlay */}
       <div className="relative w-full md:h-[200px] flex items-end">
         {activeStep && (
           <motion.div
@@ -59,7 +52,6 @@ const ProcessStepperLine = ({ steps, currentStepIndex, carImage }) => {
         )}
       </div>
 
-      {/* Red Dashed Process Progress Line */}
       <div className="relative w-full h-[60px] flex items-center">
         <div
           className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[7px] border-y border-dashed border-[#E10600] z-0 pointer-events-none"
@@ -68,7 +60,6 @@ const ProcessStepperLine = ({ steps, currentStepIndex, carImage }) => {
           }}
         />
 
-        {/* Completed Step Dots */}
         {steps.map((step, idx) => {
           if (idx >= currentStepIndex) return null;
           return (
@@ -87,7 +78,6 @@ const ProcessStepperLine = ({ steps, currentStepIndex, carImage }) => {
           );
         })}
 
-        {/* Active Mini Car Track Badge */}
         {activeStep && (
           <motion.div
             animate={{ left: activeStep.left }}
@@ -108,19 +98,14 @@ const ProcessStepperLine = ({ steps, currentStepIndex, carImage }) => {
   );
 };
 
-/**
- * Component managing the 5-Stage Document Timeline Execution
- */
 const ProcessProgress = ({ steps, carImage, onHomeClick, onStageChange }) => {
   const [stage, setStage] = useState(0);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
-  // Notify parent component when stage updates
   useEffect(() => {
     if (onStageChange) onStageChange(stage);
   }, [stage, onStageChange]);
 
-  // Stage 0 -> Stage 1 timer
   useEffect(() => {
     setStage(0);
     setCurrentStepIndex(0);
@@ -161,7 +146,6 @@ const ProcessProgress = ({ steps, carImage, onHomeClick, onStageChange }) => {
     return () => clearTimeout(timer2);
   }, [stage]);
 
-  // Stage 3 -> Stage 4 (Thank You) timer
   useEffect(() => {
     if (stage !== 3) return;
     const timer3 = setTimeout(() => {
@@ -170,7 +154,6 @@ const ProcessProgress = ({ steps, carImage, onHomeClick, onStageChange }) => {
     return () => clearTimeout(timer3);
   }, [stage]);
 
-  // Stage 0: Initial Car Spotlight
   if (stage === 0) {
     return (
       <motion.div
@@ -189,7 +172,6 @@ const ProcessProgress = ({ steps, carImage, onHomeClick, onStageChange }) => {
     );
   }
 
-  // Stage 1: Stepper Line
   if (stage === 1) {
     return (
       <ProcessStepperLine
@@ -200,7 +182,6 @@ const ProcessProgress = ({ steps, carImage, onHomeClick, onStageChange }) => {
     );
   }
 
-  // Stage 2: Car Circle Spotlight & Delivery Truck
   if (stage === 2) {
     return (
       <motion.div
@@ -235,7 +216,6 @@ const ProcessProgress = ({ steps, carImage, onHomeClick, onStageChange }) => {
     );
   }
 
-  // Stage 3: Centered Delivery Truck Spotlight
   if (stage === 3) {
     return (
       <motion.div
@@ -261,8 +241,6 @@ const ProcessProgress = ({ steps, carImage, onHomeClick, onStageChange }) => {
       </motion.div>
     );
   }
-
-  // Stage 4: THANK YOU Final Screen
   if (stage === 4) {
     return (
       <motion.div
@@ -291,9 +269,6 @@ const ProcessProgress = ({ steps, carImage, onHomeClick, onStageChange }) => {
   return null;
 };
 
-/**
- * Reusable Telemetry Stat List Component
- */
 const TelemetryStatList = ({ stats, isRightSide = false }) => {
   const offsets = isRightSide
     ? ["-translate-x-5", "translate-x-0", "-translate-x-5"]
@@ -341,9 +316,6 @@ const TelemetryStatList = ({ stats, isRightSide = false }) => {
   );
 };
 
-/**
- * Main CarDisplay Component
- */
 const CarDisplay = ({ currentCar, onNext, onHomeClick, onStageChange }) => {
   if (!currentCar) return null;
 
@@ -377,14 +349,12 @@ const CarDisplay = ({ currentCar, onNext, onHomeClick, onStageChange }) => {
           key={currentCar.id}
           className="relative w-full flex items-center justify-center gap-0 sm:gap-8"
         >
-          {/* Left Telemetry Stats */}
           {currentCar.stats ? (
             <TelemetryStatList stats={leftStats} isRightSide={false} />
           ) : (
             <div className="w-[140px] sm:w-[180px]" />
           )}
 
-          {/* Center Showcase: Process Stepper vs Car Spotlight */}
           {currentCar.processSteps ? (
             <ProcessProgress
               steps={currentCar.processSteps}
@@ -408,7 +378,6 @@ const CarDisplay = ({ currentCar, onNext, onHomeClick, onStageChange }) => {
             </motion.div>
           ) : null}
 
-          {/* Right Telemetry Stats */}
           {currentCar.stats ? (
             <TelemetryStatList stats={rightStats} isRightSide={true} />
           ) : (
@@ -417,7 +386,6 @@ const CarDisplay = ({ currentCar, onNext, onHomeClick, onStageChange }) => {
         </div>
       </AnimatePresence>
 
-      {/* Tooltip Card Trigger */}
       {currentCar.tooltip && (
         <motion.button
           type="button"
@@ -437,7 +405,6 @@ const CarDisplay = ({ currentCar, onNext, onHomeClick, onStageChange }) => {
         </motion.button>
       )}
 
-      {/* Optional Thank You Text overlay */}
       {currentCar.type === "thankyou" && (
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}

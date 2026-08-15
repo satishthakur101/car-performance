@@ -5,10 +5,6 @@ import CarDisplay from "../components/CarDisplay";
 import LapTimeline from "../components/LapTimeline";
 import { useCarNavigation } from "../hooks/useCarNavigation";
 
-/**
- * Home Page Component
- * Main layout wrapper managing global theme state, navigation index, & dynamic process stages.
- */
 const Home = () => {
   const [theme, setTheme] = useState("dark");
   const [activeTab, setActiveTab] = useState("speed");
@@ -25,12 +21,10 @@ const Home = () => {
     handleNextLap,
   } = useCarNavigation();
 
-  // Initialize lap selection on initial load
   useEffect(() => {
     selectLap(0);
   }, []);
 
-  // Synchronize light theme class on HTML document root
   useEffect(() => {
     if (theme === "light") {
       document.documentElement.classList.add("light-theme");
@@ -41,7 +35,6 @@ const Home = () => {
     }
   }, [theme]);
 
-  // Tab & Lap Navigation Handlers
   const handleHomeClick = () => {
     setActiveTab("home");
     selectLap(1);
@@ -58,7 +51,6 @@ const Home = () => {
     selectLap(2);
   };
 
-  // Background image & top spotlight visibility rules
   const showBackground =
     activeLapIndex === 2 ? processStage > 0 : activeLapIndex !== 0;
   const showShadow = activeLapIndex === 2 ? processStage === 0 : true;
@@ -78,7 +70,6 @@ const Home = () => {
           : {}),
       }}
     >
-      {/* Top Spotlight Shadow Overlay */}
       {showShadow && (
         <div
           className="absolute top-0 left-0 right-0 sm:h-[55%] h-[70%] pointer-events-none z-0 transition-opacity duration-400"
@@ -92,10 +83,8 @@ const Home = () => {
         />
       )}
 
-      {/* Main Header */}
       <Header theme={theme} setTheme={setTheme} onBackClick={handlePrevLap} />
 
-      {/* Main Showcase Stage */}
       <main className="flex-1 flex items-center justify-center relative z-10 my-auto py-2">
         <SideNavigation
           onHomeClick={handleHomeClick}
@@ -119,7 +108,6 @@ const Home = () => {
         </div>
       </main>
 
-      {/* Footer Track Timeline */}
       <footer className="w-full z-10">
         <LapTimeline
           allLaps={allLaps}
